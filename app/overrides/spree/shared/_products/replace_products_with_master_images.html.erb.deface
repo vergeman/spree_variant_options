@@ -1,7 +1,8 @@
-<!-- replace '#products' -->
+<!-- replace '#products' disabled -->
 
 <div id="products" class="row" data-hook>
   <% products.each do |product| %>
+xruby-mode
     <% option_values = Spree::OptionValue.for_product(product).where(option_type_id: SpreeVariantOptions::VariantConfig.main_option_type_id).all %>
     <% url_base = product_path(product, taxon_id: @taxon.try(:id)) %>
     
