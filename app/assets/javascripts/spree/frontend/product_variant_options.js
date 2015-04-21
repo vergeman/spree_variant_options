@@ -30,3 +30,7 @@ var show_variant_images = function(variants_ids) {
 var show_all_variant_images = function() {
   $('li.vtmb').show();
 }
+
+var hide_all_variant_images = function() {
+    $('li.vtmb').hide();
+}

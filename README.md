@@ -1,5 +1,33 @@
-# Spree Variant Options [![Build Status](https://travis-ci.org/AgilTec/spree_variant_options.svg?branch=2-2-stable)](https://travis-ci.org/AgilTec/spree_variant_options)
+# Spree Variant Optionso
 
+## Fork Notes
+
+### Taxon / Similar Items
+spree variant options override **div#products** at *spree/shared/_products*.
+Simply add 'disabled' to deface to get rid of that weird taxon behavior. I think this is ok.
+
+### Variant Buttons (product#show)
+override found in *app/overrides/spree_variant_options.rb* for **#product-variants** at *spree/products/_cart_form* - it uses *spree/products/_variant_options* as the replacement.
+
+#### _variant_options
+
+Remove all csss *assets/stylesheets/spree/frontend/spree_variant_options.css.erb
+
+backend css remains basically untouched
+
+adjust default preferences to be backorder friendly (but can be unavailable if variant combination does not exist)
+
+#### Variant_options_script.js
+
+moved button disabled to disabled class, and edited selectors to be less restrictive (i.e. not h6 strong)
+
+added some error handling code that highlights red if not selected. The css is defined in the theme pulling the gem - all spree_variant css is turned off.
+
+
+
+
+
+<hr>
 
 Spree Variant Options is a very simple spree extension that replaces the radio-button variant selection with groups of option types and values. To get a better idea let's let a few images do the explaining.
 

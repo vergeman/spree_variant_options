@@ -66,6 +66,7 @@ function VariantOptions(params) {
         $(this).find("ul.variant-option-values li a.in-stock:first").click();
       });
     }
+      bind_cart_submit();
   }
 
   function get_index(parent) {
@@ -193,8 +194,8 @@ function VariantOptions(params) {
       $('#variant_id, form[data-form-type="variant"] input[name$="[variant_id]"]').val(variant.id);
       $('#product-price .price').removeClass('unselected').text(variant.price);
       if (variant.in_stock)
-        $('#cart-form button[type=submit]').attr('disabled', false).fadeTo(100, 1);
-      $('form[data-form-type="variant"] button[type=submit]').attr('disabled', false).fadeTo(100, 1);
+        $('#cart-form button[type=submit]').removeClass('disabled').fadeTo(100, 1);
+      $('form[data-form-type="variant"] button[type=submit]').removeClass('disabled').fadeTo(100, 1);
       try {
         show_variant_images(variant.id);
       } catch(error) {
@@ -208,7 +209,7 @@ function VariantOptions(params) {
       }
 
       $('#variant_id, form[data-form-type="variant"] input[name$="[variant_id]"]').val('');
-      $('#cart-form button[type=submit], form[data-form-type="variant"] button[type=submit]').attr('disabled', true).fadeTo(0, 0.5);
+      $('#cart-form button[type=submit], form[data-form-type="variant"] button[type=submit]').addClass('disabled').fadeTo(0, 0.5);
       price = $('#product-price .price').addClass('unselected')
       // Replace product price by "(select)" only when there are at least 1 variant not out-of-stock
       variants = $("div.variant-options.index-0")
@@ -225,9 +226,9 @@ function VariantOptions(params) {
     parent.nextAll().each(function(index, element) {
       disable($(element).find('a.option-value').show().removeClass('in-stock out-of-stock').addClass('locked').unbind('click'));
       $(element).find('a.clear-button').hide();
-      $(element).find('h6 strong.selection').html('').removeClass('out-of-stock');
+      $(element).find('.variant-option-type .selection').html('').removeClass('out-of-stock');
     });
-    parent.find('strong.selection').html('').removeClass('out-of-stock');
+    parent.find('.variant-option-type.selection').html('').removeClass('out-of-stock');
     show_all_variant_images();
   }
 
@@ -253,6 +254,33 @@ function VariantOptions(params) {
     handle_selected();
     variants = find_variant();
     toggle(variants);
+    remove_errors();
+  }
+
+  function show_errors(e) {
+      $(e).addClass('error')
+  }
+
+  function remove_errors() {
+      $('.variant-option-values').removeClass('error')
+  }
+
+  function bind_cart_submit() {
+      $('#add-to-cart-button').on("click", function(e) {
+          if ($(e.currentTarget).hasClass('disabled') ) {
+              e.preventDefault();
+
+              //highlight errors - group of divs without a '.selected' child
+              $('.variant-option-values').each(function(i,e) {
+                  $(e).has('.selected')[0] ? '' : show_errors(e)
+              } );
+
+          }
+          else {
+              $(this).off(e);
+          }
+
+      });
   }
 
   function handle_selected() {
