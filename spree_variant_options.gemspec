@@ -20,7 +20,7 @@ Gem::Specification.new do |s|
   s.require_paths = ["lib"]
 
   # Runtime
-  spree_version = '~> 2.4.0'
+  spree_version = '~> 3.1.0.beta'
   s.add_dependency 'spree_api', spree_version
   s.add_dependency 'spree_core', spree_version
   s.add_dependency 'spree_frontend', spree_version
@@ -40,6 +40,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency('database_cleaner')
   s.add_development_dependency('sqlite3')
   s.add_development_dependency('coffee-rails')
+  s.add_development_dependency 'rspec-rails',  '~> 3.1'
   s.add_development_dependency('capybara')
   s.add_development_dependency('poltergeist')
   s.add_development_dependency('launchy')

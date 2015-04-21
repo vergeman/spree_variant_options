@@ -1,7 +1,7 @@
 module SpreeVariantOptions
   class VariantConfiguration < Spree::Preferences::Configuration
-    preference :allow_select_outofstock, :boolean, :default => false
-    preference :default_instock, :boolean, :default => false
+    preference :allow_select_outofstock, :boolean, :default => true
+    preference :default_instock, :boolean, :default => true
     preference :main_option_type_id, :integer, :default => 1
     preference :main_option_type_label, :string, :default => 'color'
     preference :option_value_url, :string, :default => '/spree/option_values/:id/:style/:basename.:extension'
