@@ -1,8 +1,8 @@
 <% if @product.has_variants? %>
-  <div id="product-variants">
+  <div class="col-sm-12" id="product-variants">
     <% index = 0 %>
     <% @product.grouped_option_values.each do |type, values| %>
-      <div id="<%= dom_id(type) %>" class="col-sm-12 variant-options index-<%= index %>">
+      <div id="<%= dom_id(type) %>" class="variant-options index-<%= index %>">
         <h6 class="variant-option-type">
           <%= label_tag 'option-value-name', Spree.t(:select_a, :index => index + 1, :name => type.presentation) %>&nbsp;
           <span class='selection'></span>
@@ -43,4 +43,5 @@
     //]]>
     </script>
   </div>
+<div class="clearfix"></div>
 <% end%>
