@@ -185,7 +185,7 @@ if (!Array.find_matches) Array.find_matches = function(a) {
             var prices = [];
             $.each(variants, function(key, value) { prices.push(value.price) }); 
             prices = $.unique(prices).sort(function(a, b) {
-                return to_f(a) < to_f(b) ? -1 : 1;
+                return VO.to_f(a) < VO.to_f(b) ? -1 : 1;
             });
             if (prices.length == 1) {
                 $('#product-price .price').html('<span class="price assumed">' + prices[0] + '</span>');
