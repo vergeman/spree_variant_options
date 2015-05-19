@@ -9,7 +9,7 @@
         $('li.vtmb').hide();
 
         $(variants_ids).each(function(index, variant_id){
-            $('li.tmb-' + variant_id).css('display', 'inline-block');
+            $('li.tmb-' + variant_id).show();
 
             var currentThumb = $('.vtmb.selected');
 
@@ -34,7 +34,7 @@
     }
 
     VO.show_all_variant_images = function() {
-        $('li.vtmb').css('display', 'inline-block');
+        $('li.vtmb').show();
     }
 
     VO.hide_all_variant_images = function() {
